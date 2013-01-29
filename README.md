@@ -2,10 +2,6 @@ This is an example Ratpack app, based on the Vert.x version. It is a subset port
 
 It is also using the Ratpack Gradle plugin as the development environment.
 
-## About
-
-This app shows off some of the ratpack features, and the Gradle integration.
-
 ## Getting Started
 
 Check this project out, cd into the directory and run:
