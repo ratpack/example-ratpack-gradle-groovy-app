@@ -45,3 +45,10 @@ If you have the `idea` command line tool installed you can then run:
 
 In the “Run” menu, you will find a run configuration for launching the Ratpack app from within your IDE. Hot reloading
 is supported in this mode. See `src/main/groovy/groovywebconsole/ReloadingThing.groovy` for details.
+
+## More on Ratpack
+
+There are no published docs for Ratpack at this time.
+
+To learn more, check out the source @ https://github.com/ratpack/ratpack/tree/vertx or open this project in IDEA and
+dig through the source there.
