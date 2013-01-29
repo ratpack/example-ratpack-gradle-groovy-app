@@ -18,6 +18,11 @@ repositories {
 // See: http://gradle.org/docs/current/userguide/application_plugin.html
 apply plugin: "ratpack"
 
+// Use log4j for logging (see: http://vertx.io/manual.html#logging)
+run {
+    systemProperty "org.vertx.logger-delegate-factory-class-name", "org.vertx.java.core.logging.impl.Log4jLogDelegateFactory"
+}
+
 // The “ratpack” plugin is IDEA aware.
 // It will create a run configuration in IDEA to launch your app in your IDE, with hot reloading.
 apply plugin: "idea"

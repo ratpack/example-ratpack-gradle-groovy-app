@@ -1,6 +1,16 @@
 import org.ratpackframework.app.Config
 
-Config config = this as Config
+// The config file determines how to configure the app on startup.
+// This file is NOT reloadable. If you change something here you need to bounce the app.
 
-config.port 5051
-config.staticallyCompileRoutes false
+(this as Config).with { // not necessary, but enables IDE intellsense
+    host "localhost"
+    port 5052
+
+    reloadRoutes true // automatically reload routes when the script changes
+
+    staticallyCompileRoutes true
+    staticallyCompileTemplates true
+
+    templatesCacheSize 0 // disable template caching, always reload
+}

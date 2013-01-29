@@ -42,6 +42,7 @@
 
 <h1><a href="/"><%= model.title %></a></h1>
 
+<% /* Example of a nested template. Note that its model merges with the parent (model.title is available in the child) */ %>
 <% render "editor.html", cols: 40, rows: 15 %>
 
 <div id="tabs">
