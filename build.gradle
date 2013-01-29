@@ -11,13 +11,26 @@ buildscript {
 repositories {
   maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
   mavenCentral()
-  maven { url "http://repo.springsource.org/repo" }
+  maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
+// The “ratpack” plugin applies the “application” plugin, making it easy to create a standalone application.
+// See: http://gradle.org/docs/current/userguide/application_plugin.html
 apply plugin: "ratpack"
+
+// The “ratpack” plugin is IDEA aware.
+// It will create a run configuration in IDEA to launch your app in your IDE, with hot reloading.
 apply plugin: "idea"
+idea {
+    project {
+        jdkName "1.7"
+        languageLevel "1.7"
+    }
+}
 
 dependencies {
+    // SpringLoaded enables runtime hot reloading.
+    // It is not part of the app runtime and is not shipped in the distribution.
     springloaded "org.springsource.springloaded:springloaded-core:1.1.1"
 }
 
