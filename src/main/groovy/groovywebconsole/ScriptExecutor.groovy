@@ -48,7 +48,7 @@ class ScriptExecutor {
         }
 
         new ScriptResult(
-                executionResult: result,
+                executionResult: result == null ? "" : result,
                 outputText: stream.toString(encoding),
                 stacktraceText: stacktrace.toString()
         )
