@@ -1,0 +1,26 @@
+buildscript {
+  repositories {
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.ratpack-framework.vertx:ratpack-gradle-plugin:0.7.0-SNAPSHOT'
+  }
+}
+
+repositories {
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+  mavenCentral()
+  maven { url "http://repo.springsource.org/repo" }
+}
+
+apply plugin: "ratpack"
+apply plugin: "idea"
+
+dependencies {
+    springloaded "org.springsource.springloaded:springloaded-core:1.1.1"
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '1.4'
+}
