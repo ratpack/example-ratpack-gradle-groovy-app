@@ -5,7 +5,7 @@ import org.ratpackframework.app.Config
 
 (this as Config).with { // not necessary, but enables IDE intellsense
     host "localhost"
-    port 5052
+    port 5050
 
     reloadRoutes true // automatically reload routes when the script changes
 
