@@ -4,6 +4,8 @@ It is also using the Ratpack Gradle plugin as the development environment.
 
 ## Getting Started
 
+*To run this app, you need Java 7* (Vert.x requires Java 7).
+
 Check this project out, cd into the directory and run:
 
     ./gradlew run
