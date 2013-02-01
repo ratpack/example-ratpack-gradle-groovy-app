@@ -1,7 +1,7 @@
 import groovywebconsole.ReloadingThing
 import groovywebconsole.ScriptExecutor
 import groovywebconsole.ScriptResult
-import org.ratpackframework.Request
+import org.ratpackframework.groovy.Request
 import org.ratpackframework.Response
 import org.ratpackframework.Routing
 
@@ -27,5 +27,5 @@ r.post("/execute") { Request request, Response response ->
 }
 
 r.get("/reloadexample") {
-    renderString new ReloadingThing().toString()
+    renderText new ReloadingThing().toString()
 }
