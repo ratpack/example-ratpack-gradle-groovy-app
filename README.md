@@ -1,10 +1,10 @@
-This is an example Ratpack app, based on the Vert.x version. It is a subset port of http://groovyconsole.appspot.com/.
+This is an example Ratpack app, based on the Netty version. It is a subset port of http://groovyconsole.appspot.com/.
 
 It is also using the Ratpack Gradle plugin as the development environment.
 
 ## Getting Started
 
-*To run this app, you need Java 7* (Vert.x requires Java 7).
+*To run this app, you need Java 7* (to be fixed)
 
 Check this project out, cd into the directory and run:
 
@@ -52,5 +52,5 @@ is supported in this mode. See `src/main/groovy/groovywebconsole/ReloadingThing.
 
 There are no published docs for Ratpack at this time.
 
-To learn more, check out the source @ https://github.com/ratpack/ratpack/tree/vertx or open this project in IDEA and
+To learn more, check out the source @ https://github.com/ratpack/ratpack/tree/netty or open this project in IDEA and
 dig through the source there.
