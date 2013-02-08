@@ -4,7 +4,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.ratpack-framework.vertx:ratpack-gradle-plugin:0.7.0-SNAPSHOT'
+    classpath 'org.ratpack-framework.netty:ratpack-gradle-plugin:0.7.0-SNAPSHOT'
   }
 }
 
@@ -14,14 +14,9 @@ repositories {
   maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
-// The “ratpack” plugin applies the “application” plugin, making it easy to create a standalone application.
+// The “ratpack” plugin applies the “application” plugin, making it easy to create a standalone application.
 // See: http://gradle.org/docs/current/userguide/application_plugin.html
 apply plugin: "ratpack"
-
-// Use log4j for logging (see: http://vertx.io/manual.html#logging)
-run {
-    systemProperty "org.vertx.logger-delegate-factory-class-name", "org.vertx.java.core.logging.impl.Log4jLogDelegateFactory"
-}
 
 // The “ratpack” plugin is IDEA aware.
 // It will create a run configuration in IDEA to launch your app in your IDE, with hot reloading.
