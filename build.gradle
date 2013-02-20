@@ -4,7 +4,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'org.ratpack-framework.netty:ratpack-gradle-plugin:0.7.0-SNAPSHOT'
+    classpath 'org.ratpack-framework.netty:ratpack-gradle:0.7.0-SNAPSHOT'
   }
 }
 
@@ -16,7 +16,7 @@ repositories {
 
 // The “ratpack” plugin applies the “application” plugin, making it easy to create a standalone application.
 // See: http://gradle.org/docs/current/userguide/application_plugin.html
-apply plugin: "ratpack"
+apply plugin: "ratpack-groovy"
 
 // The “ratpack” plugin is IDEA aware.
 // It will create a run configuration in IDEA to launch your app in your IDE, with hot reloading.
