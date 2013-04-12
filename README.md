@@ -52,5 +52,5 @@ is supported in this mode. See `src/main/groovy/groovywebconsole/ReloadingThing.
 
 There are no published docs for Ratpack at this time.
 
-To learn more, check out the source @ https://github.com/ratpack/ratpack/tree/netty or open this project in IDEA and
+To learn more, check out the source @ https://github.com/ratpack/ratpack/tree/master or open this project in IDEA and
 dig through the source there.
