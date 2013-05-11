@@ -5,12 +5,11 @@ import groovywebconsole.ScriptResult
 import org.ratpackframework.groovy.templating.TemplateRenderer
 
 import static org.ratpackframework.groovy.RatpackScript.ratpack
-import static org.ratpackframework.routing.Handlers.assets
 
 ratpack {
     routing {
-        get("") {
-            context.get(TemplateRenderer).render "skin.html", title: "Groovy Web Console"
+        get {
+            get(TemplateRenderer).render "skin.html", title: "Groovy Web Console"
         }
 
         post("execute") {
@@ -23,7 +22,7 @@ ratpack {
             response.send new ReloadingThing().toString()
         }
 
-        route assets("public")
+        assets("public")
     }
 }
 
