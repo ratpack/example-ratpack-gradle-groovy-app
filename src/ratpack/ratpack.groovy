@@ -1,9 +1,8 @@
-import groovy.json.JsonOutput
 import groovywebconsole.ReloadingThing
 import groovywebconsole.ScriptExecutor
-import groovywebconsole.ScriptResult
 import org.ratpackframework.groovy.templating.TemplateRenderer
 
+import static groovy.json.JsonOutput.toJson
 import static org.ratpackframework.groovy.RatpackScript.ratpack
 
 ratpack {
@@ -13,16 +12,16 @@ ratpack {
         }
 
         post("execute") {
-            String script = request.form.get("script")[0]
-            ScriptResult result = new ScriptExecutor().execute(script)
-            response.send "application/json", JsonOutput.toJson(result)
+            String script = request.form.script.first()
+            def result = new ScriptExecutor().execute(script)
+            response.send "application/json", toJson(result)
         }
 
         get("reloadexample") {
             response.send new ReloadingThing().toString()
         }
 
-        assets("public")
+        assets "public"
     }
 }
 
