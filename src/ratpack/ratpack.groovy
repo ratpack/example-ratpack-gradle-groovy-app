@@ -6,13 +6,13 @@ import static groovy.json.JsonOutput.toJson
 import static org.ratpackframework.groovy.RatpackScript.ratpack
 
 ratpack {
-    routing {
+    handlers {
         get {
             get(TemplateRenderer).render "skin.html", title: "Groovy Web Console"
         }
 
         post("execute") {
-            String script = request.form.script.first()
+            def script = request.form.script.first()
             def result = new ScriptExecutor().execute(script)
             response.send "application/json", toJson(result)
         }
