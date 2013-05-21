@@ -1,6 +1,6 @@
 buildscript {
   repositories {
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "http://oss.jfrog.org/artifactory/repo" }
     mavenCentral()
   }
   dependencies {
@@ -9,7 +9,8 @@ buildscript {
 }
 
 repositories {
-  maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+  mavenLocal()
+  maven { url "http://oss.jfrog.org/artifactory/repo" }
   mavenCentral()
   maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
