@@ -1,4 +1,4 @@
-This is an example Ratpack app, based on the Netty version. It is a subset port of http://groovyconsole.appspot.com/.
+This is an example Ratpack app, based on the latest ([Netty](http://netty.io)-powered) version. It is a subset port of the [Groovy Console](http://groovyconsole.appspot.com/).
 
 It is also using the Ratpack Gradle plugin as the development environment.
 
@@ -10,7 +10,7 @@ Check this project out, cd into the directory and run:
 
     ./gradlew run
 
-This will start the ratpack app. In your browser go to `http://localhost:5050`.
+This will start the ratpack app. In your browser go to <http://localhost:5050>.
 
 The Gradle Ratpack plugin builds on the Gradle Application plugin. This means it's easy to create a standalone
 distribution for your app.
@@ -21,7 +21,7 @@ Run:
     cd build/install/groovy-web-console/
     bin/groovy-web-console
 
-Your app should now be running (see http://gradle.org/docs/current/userguide/application_plugin.html) for more on what
+Your app should now be running. See [The Application Plugin](http://gradle.org/docs/current/userguide/application_plugin.html) chapter in the [Gradle User Guide](http://www.gradle.org/docs/current/userguide/userguide.html) for more on what
 the Gradle application plugin can do for you.
 
 ## Development time reloading
@@ -37,7 +37,7 @@ the SpringLoaded based reloading.
 
 ## IDEA integration
 
-The Ratpack Gradle plugin has special support for IntelliJ IDEA. To open the project in IDEA, run:
+The Ratpack Gradle plugin has special support for [IntelliJ IDEA](http://www.jetbrains.com/idea/download/). To open the project in IDEA, run:
 
     ./gradlew idea
 
@@ -50,7 +50,9 @@ is supported in this mode. See `src/main/groovy/groovywebconsole/ReloadingThing.
 
 ## More on Ratpack
 
-There are no published docs for Ratpack at this time.
+The published [Ratpack Manual](http://www.ratpack-framework.org/manual/snapshot/) is currently minimal, but contributions are welcome.
 
-To learn more, check out the source @ https://github.com/ratpack/ratpack/tree/master or open this project in IDEA and
+More information, including issue tracker and support forum, is available on the [Ratpack Website](http://www.ratpack-framework.org).
+
+You can also check out the source @ https://github.com/ratpack/ratpack/tree/master or open this project in IDEA and
 dig through the source there.
