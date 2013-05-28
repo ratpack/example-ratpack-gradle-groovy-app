@@ -9,7 +9,6 @@ buildscript {
 }
 
 repositories {
-  mavenLocal()
   maven { url "http://oss.jfrog.org/repo" }
   mavenCentral()
   maven { url "http://repo.springsource.org/repo" } // for springloaded
