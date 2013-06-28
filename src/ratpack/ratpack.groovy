@@ -12,7 +12,7 @@ ratpack {
         }
 
         post("execute") {
-            def script = request.form.script.first()
+            def script = request.form.script
             def result = new ScriptExecutor().execute(script)
             response.send "application/json", toJson(result)
         }
