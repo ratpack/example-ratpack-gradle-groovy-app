@@ -3,7 +3,7 @@ import groovywebconsole.ScriptExecutionModule
 import groovywebconsole.ScriptExecutor
 
 import static org.ratpackframework.groovy.RatpackScript.ratpack
-import static org.ratpackframework.groovy.templating.Template.groovyTemplate
+import static org.ratpackframework.groovy.Template.groovyTemplate
 
 ratpack {
 
