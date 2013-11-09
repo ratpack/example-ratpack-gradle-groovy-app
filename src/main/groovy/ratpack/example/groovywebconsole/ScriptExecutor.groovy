@@ -1,4 +1,4 @@
-package groovywebconsole
+package ratpack.example.groovywebconsole
 
 interface ScriptExecutor {
 

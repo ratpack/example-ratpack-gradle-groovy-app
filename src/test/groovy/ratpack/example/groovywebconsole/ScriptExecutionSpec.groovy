@@ -1,9 +1,18 @@
-package groovywebconsole
+package ratpack.example.groovywebconsole
 
 import com.jayway.restassured.path.json.JsonPath
-import org.ratpackframework.test.ScriptAppSpec
+import ratpack.groovy.test.LocalScriptApplicationUnderTest
+import ratpack.groovy.test.TestHttpClient
+import spock.lang.Specification
 
-class ScriptExecutionSpec extends ScriptAppSpec {
+class ScriptExecutionSpec extends Specification {
+
+    def aut = new LocalScriptApplicationUnderTest()
+    @Delegate TestHttpClient client = aut.httpClient()
+
+    def setup() {
+        resetRequest()
+    }
 
     def "captures output"() {
         when:

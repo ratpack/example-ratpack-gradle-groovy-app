@@ -1,4 +1,4 @@
-package groovywebconsole
+package ratpack.example.groovywebconsole
 
 class ScriptResult {
     String executionResult

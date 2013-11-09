@@ -1,4 +1,4 @@
-package groovywebconsole
+package ratpack.example.groovywebconsole
 
 import com.google.inject.AbstractModule
 

@@ -1,4 +1,4 @@
-package groovywebconsole
+package ratpack.example.groovywebconsole
 
 import org.codehaus.groovy.control.MultipleCompilationErrorsException
 import org.codehaus.groovy.runtime.StackTraceUtils

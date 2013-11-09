@@ -1,4 +1,4 @@
-package groovywebconsole
+package ratpack.example.groovywebconsole
 
 /**
  * Used to illustrate runtime reloading of supporting classes.
