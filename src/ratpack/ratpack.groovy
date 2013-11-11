@@ -1,11 +1,11 @@
 import ratpack.example.groovywebconsole.ReloadingThing
 import ratpack.example.groovywebconsole.ScriptExecutionModule
 import ratpack.example.groovywebconsole.ScriptExecutor
-import ratpack.groovy.RatpackScript
-import ratpack.groovy.Template
+import ratpack.groovy.templating.Template
 import ratpack.groovy.templating.TemplatingModule
+import static ratpack.groovy.Groovy.*
 
-RatpackScript.ratpack {
+ratpack {
 
     modules {
         register new ScriptExecutionModule()
@@ -14,7 +14,7 @@ RatpackScript.ratpack {
 
     handlers {
         get {
-            render Template.groovyTemplate("skin.html", title: "Groovy Web Console")
+            render groovyTemplate("skin.html", title: "Groovy Web Console")
         }
 
         post("execute") { ScriptExecutor scriptExecutor ->
