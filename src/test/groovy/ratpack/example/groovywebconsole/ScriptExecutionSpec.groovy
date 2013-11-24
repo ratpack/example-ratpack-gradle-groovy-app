@@ -22,7 +22,7 @@ class ScriptExecutionSpec extends Specification {
 
         then:
         with(new JsonResponse()) {
-            outputText == "hello world\n"
+            outputText == "hello world\n".denormalize()
             executionResult == ""
             stacktraceText == ""
         }
