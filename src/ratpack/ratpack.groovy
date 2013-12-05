@@ -4,6 +4,7 @@ import ratpack.example.groovywebconsole.ScriptExecutor
 import ratpack.groovy.templating.Template
 import ratpack.groovy.templating.TemplatingModule
 import static ratpack.groovy.Groovy.*
+import static ratpack.form.Forms.form
 
 ratpack {
 
@@ -18,7 +19,8 @@ ratpack {
         }
 
         post("execute") { ScriptExecutor scriptExecutor ->
-            def script = request.form.script
+            def form = parse form()
+            def script = form.script
             render scriptExecutor.execute(script)
         }
 
