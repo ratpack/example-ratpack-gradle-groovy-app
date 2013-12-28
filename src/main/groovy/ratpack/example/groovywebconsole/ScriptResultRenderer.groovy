@@ -1,24 +1,20 @@
 package ratpack.example.groovywebconsole
 
-import ratpack.handling.Context
-import ratpack.render.Renderer
+import groovy.transform.CompileStatic
+import ratpack.groovy.handling.GroovyContext
+import ratpack.groovy.render.GroovyRendererSupport
 
 import static groovy.json.JsonOutput.toJson
 
-class ScriptResultRenderer implements Renderer<ScriptResult> {
+@CompileStatic
+class ScriptResultRenderer extends GroovyRendererSupport<ScriptResult> {
 
     @Override
-    Class<ScriptResult> getType() {
-        ScriptResult
-    }
-
-    @Override
-    void render(Context context, ScriptResult result) {
-        context.with {
-            respond byContent.
-                    type("application/json") {
-                        response.send toJson(result)
-                    }
+    void render(GroovyContext context, ScriptResult result) {
+        context.byContent {
+            json {
+                render toJson(result)
+            }
         }
     }
 }

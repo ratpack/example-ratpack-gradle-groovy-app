@@ -1,7 +1,9 @@
 package ratpack.example.groovywebconsole
 
 import com.google.inject.AbstractModule
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class ScriptExecutionModule extends AbstractModule {
 
     @Override

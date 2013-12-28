@@ -1,8 +1,10 @@
 package ratpack.example.groovywebconsole
 
+import groovy.transform.CompileStatic
 import org.codehaus.groovy.control.MultipleCompilationErrorsException
 import org.codehaus.groovy.runtime.StackTraceUtils
 
+@CompileStatic
 class GroovyScriptExecutor implements ScriptExecutor {
 
     ScriptResult execute(String scriptText) {
@@ -43,12 +45,12 @@ class GroovyScriptExecutor implements ScriptExecutor {
 
             GroovySystem.metaClassRegistry.removeMetaClassRegistryChangeEventListener listener
             emcEvents.each { MetaClassRegistryChangeEvent event ->
-                GroovySystem.metaClassRegistry.removeMetaClass event.clazz
+                GroovySystem.metaClassRegistry.removeMetaClass event.classToUpdate
             }
         }
 
         new ScriptResult(
-                executionResult: result == null ? "" : result,
+                executionResult: result == null ? "" : result.toString(),
                 outputText: stream.toString(encoding),
                 stacktraceText: stacktrace.toString()
         )
