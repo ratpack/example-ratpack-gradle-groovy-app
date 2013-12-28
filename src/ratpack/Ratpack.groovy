@@ -1,10 +1,11 @@
 import ratpack.example.groovywebconsole.ReloadingThing
 import ratpack.example.groovywebconsole.ScriptExecutionModule
 import ratpack.example.groovywebconsole.ScriptExecutor
-import ratpack.groovy.templating.Template
 import ratpack.groovy.templating.TemplatingModule
-import static ratpack.groovy.Groovy.*
+
 import static ratpack.form.Forms.form
+import static ratpack.groovy.Groovy.groovyTemplate
+import static ratpack.groovy.Groovy.ratpack
 
 ratpack {
 
@@ -25,7 +26,7 @@ ratpack {
         }
 
         get("reloadexample") {
-            response.send new ReloadingThing().toString()
+            render new ReloadingThing().toString()
         }
 
         assets "public"
