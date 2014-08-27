@@ -18,7 +18,7 @@ class GroovyScriptExecutor implements ScriptExecutor {
 
         def aBinding = new Binding([out: printStream])
 
-        def emcEvents = []
+        List<MetaClassRegistryChangeEvent> emcEvents = []
         def listener = { MetaClassRegistryChangeEvent event ->
             emcEvents << event
         } as MetaClassRegistryChangeEventListener

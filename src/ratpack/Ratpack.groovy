@@ -1,17 +1,17 @@
 import ratpack.example.groovywebconsole.ReloadingThing
 import ratpack.example.groovywebconsole.ScriptExecutionModule
 import ratpack.example.groovywebconsole.ScriptExecutor
+import ratpack.form.Form
 import ratpack.groovy.templating.TemplatingModule
 
-import static ratpack.form.Forms.form
 import static ratpack.groovy.Groovy.groovyTemplate
 import static ratpack.groovy.Groovy.ratpack
 
 ratpack {
 
-    modules {
-        register new ScriptExecutionModule()
-        get(TemplatingModule).staticallyCompile = true
+    bindings {
+        add new ScriptExecutionModule()
+        config(TemplatingModule).staticallyCompile = true
     }
 
     handlers {
@@ -20,8 +20,8 @@ ratpack {
         }
 
         post("execute") { ScriptExecutor scriptExecutor ->
-            def form = parse form()
-            def script = form.script
+            Form form = parse(Form)
+            String script = form.script
             render scriptExecutor.execute(script)
         }
 
