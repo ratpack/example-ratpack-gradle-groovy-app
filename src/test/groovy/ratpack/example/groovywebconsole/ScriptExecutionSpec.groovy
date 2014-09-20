@@ -1,11 +1,14 @@
 package ratpack.example.groovywebconsole
 
-import com.jayway.restassured.path.json.JsonPath
-import com.jayway.restassured.response.Response
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
 import ratpack.groovy.test.LocalScriptApplicationUnderTest
-import ratpack.groovy.test.TestHttpClient
-import ratpack.groovy.test.TestHttpClients
+import ratpack.http.client.ReceivedResponse
+import ratpack.test.http.TestHttpClient
+import ratpack.test.http.TestHttpClients
 import spock.lang.Specification
+
+import static ratpack.http.MediaType.APPLICATION_FORM
 
 class ScriptExecutionSpec extends Specification {
 
@@ -14,12 +17,26 @@ class ScriptExecutionSpec extends Specification {
 
     def setup() {
         resetRequest()
+        requestSpec {
+            it.headers.add("Content-Type", APPLICATION_FORM)
+        }
+    }
+
+    private String encode(String toBeEncoded) {
+        URLEncoder.encode(toBeEncoded, "UTF-8")
+    }
+
+    private void postScript(String script) {
+        requestSpec {
+            it.headers.add("Content-Type", APPLICATION_FORM)
+            it.body.stream { it << "script=${encode(script)}" }
+        }
+        post "execute"
     }
 
     def "captures output"() {
         when:
-        request.param "script", "println 'hello world'"
-        post "execute"
+        postScript('println "hello world"')
 
         then:
         with(new JsonResponse(response)) {
@@ -31,8 +48,7 @@ class ScriptExecutionSpec extends Specification {
 
     def "captures result"() {
         when:
-        request.param "script", "1%0A3"
-        post "execute"
+        postScript('1\n3')
 
         then:
         with(new JsonResponse(response)) {
@@ -44,8 +60,7 @@ class ScriptExecutionSpec extends Specification {
 
     def "captures errors"() {
         when:
-        request.param "script", "throw new Exception('bang')"
-        post "execute"
+        postScript('throw new Exception("bang")')
 
         then:
         with(new JsonResponse(response)) {
@@ -57,22 +72,22 @@ class ScriptExecutionSpec extends Specification {
     }
 
     class JsonResponse {
-        private JsonPath path
+        private JsonNode json
 
-        JsonResponse(Response response) {
-            path = response.jsonPath()
+        JsonResponse(ReceivedResponse response) {
+            json = new ObjectMapper().reader().readTree(response.body.text)
         }
 
         String getOutputText() {
-            path.outputText
+            json.get('outputText').asText()
         }
 
         String getExecutionResult() {
-            path.executionResult
+            json.get('executionResult').asText()
         }
 
         String getStacktraceText() {
-            path.stacktraceText
+            json.get('stacktraceText').asText()
         }
     }
 }

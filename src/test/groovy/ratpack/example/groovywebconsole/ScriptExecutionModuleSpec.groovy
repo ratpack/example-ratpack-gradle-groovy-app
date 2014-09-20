@@ -1,7 +1,9 @@
 package ratpack.example.groovywebconsole
 
-import ratpack.groovy.test.TestHttpClient
-import ratpack.groovy.test.TestHttpClients
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.ObjectMapper
+import ratpack.test.http.TestHttpClient
+import ratpack.test.http.TestHttpClients
 import ratpack.groovy.test.embed.ClosureBackedEmbeddedApplication
 import spock.lang.AutoCleanup
 import spock.lang.Specification
@@ -14,6 +16,7 @@ class ScriptExecutionModuleSpec extends Specification {
     @AutoCleanup
     ClosureBackedEmbeddedApplication app = new ClosureBackedEmbeddedApplication()
 
+    @Delegate
     TestHttpClient client = TestHttpClients.testHttpClient(app)
 
     def "script module provides executor and renderer"() {
@@ -30,7 +33,11 @@ class ScriptExecutionModuleSpec extends Specification {
         }
 
         then:
-        client.get().body.jsonPath().getString("outputText") == "foo\n"
+        jsonResponse().get("outputText").asText() == "foo\n"
+    }
+
+    JsonNode jsonResponse() {
+        new ObjectMapper().reader().readTree(get().body.text)
     }
 
 }
