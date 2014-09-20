@@ -1,6 +1,7 @@
 package ratpack.example.groovywebconsole
 
 import com.jayway.restassured.path.json.JsonPath
+import com.jayway.restassured.response.Response
 import ratpack.groovy.test.LocalScriptApplicationUnderTest
 import ratpack.groovy.test.TestHttpClient
 import ratpack.groovy.test.TestHttpClients
@@ -21,7 +22,7 @@ class ScriptExecutionSpec extends Specification {
         post "execute"
 
         then:
-        with(new JsonResponse()) {
+        with(new JsonResponse(response)) {
             outputText == "hello world\n".denormalize()
             executionResult == ""
             stacktraceText == ""
@@ -30,11 +31,11 @@ class ScriptExecutionSpec extends Specification {
 
     def "captures result"() {
         when:
-        request.param "script", "1\n3"
+        request.param "script", "1%0A3"
         post "execute"
 
         then:
-        with(new JsonResponse()) {
+        with(new JsonResponse(response)) {
             outputText == ""
             executionResult == "3"
             stacktraceText == ""
@@ -47,7 +48,7 @@ class ScriptExecutionSpec extends Specification {
         post "execute"
 
         then:
-        with(new JsonResponse()) {
+        with(new JsonResponse(response)) {
             outputText == ""
             executionResult == ""
             stacktraceText.contains "java.lang.Exception"
@@ -56,7 +57,11 @@ class ScriptExecutionSpec extends Specification {
     }
 
     class JsonResponse {
-        private JsonPath path = ScriptExecutionSpec.this.response.jsonPath()
+        private JsonPath path
+
+        JsonResponse(Response response) {
+            path = response.jsonPath()
+        }
 
         String getOutputText() {
             path.outputText
