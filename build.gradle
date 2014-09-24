@@ -57,3 +57,6 @@ dependencies {
         exclude module: "groovy-all"
     }
 }
+
+//some CI config
+apply from: "gradle/ci.gradle"
