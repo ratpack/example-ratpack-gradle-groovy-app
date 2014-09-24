@@ -3,7 +3,7 @@ import groovy.json.JsonBuilder
 if (System.getenv("SNAP_CI")) {
     gradle.addListener(new BuildAdapter() {
         public void buildFinished(BuildResult result) {
-            def repository = "example-ratpack-gradle-java-app"
+            def repository = "example-ratpack-gradle-groovy-app"
 
             def slackToken = System.getenv("SLACK_TOKEN")
             def pipelineNumber = System.getenv("SNAP_PIPELINE_COUNTER")
