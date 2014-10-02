@@ -17,8 +17,8 @@ apply plugin: "io.ratpack.ratpack-groovy"
 apply plugin: "idea"
 idea {
     project {
-        jdkName "1.7"
-        languageLevel "1.7"
+        jdkName "1.8"
+        languageLevel "1.8"
         ipr {
             withXml { provider ->
                 def node = provider.asNode()
@@ -54,3 +54,6 @@ dependencies {
         exclude module: "groovy-all"
     }
 }
+
+//some CI config
+apply from: "gradle/ci.gradle"

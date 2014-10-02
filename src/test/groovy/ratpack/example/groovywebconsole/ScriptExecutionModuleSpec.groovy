@@ -2,26 +2,29 @@ package ratpack.example.groovywebconsole
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import ratpack.groovy.test.embed.GroovyEmbeddedApp
+import ratpack.test.embed.EmbeddedApp
 import ratpack.test.http.TestHttpClient
 import ratpack.test.http.TestHttpClients
-import ratpack.groovy.test.embed.ClosureBackedEmbeddedApplication
 import spock.lang.AutoCleanup
 import spock.lang.Specification
 
 /**
- * An example of functionally testing a module in isolation, using {@link ratpack.test.embed.EmbeddedApplication}
+ * An example of functionally testing a module in isolation, using {@link ratpack.test.embed.EmbeddedApp}
  */
 class ScriptExecutionModuleSpec extends Specification {
 
+    def lineSeparator = System.getProperty("line.separator")
+
     @AutoCleanup
-    ClosureBackedEmbeddedApplication app = new ClosureBackedEmbeddedApplication()
+    EmbeddedApp app
 
     @Delegate
-    TestHttpClient client = TestHttpClients.testHttpClient(app)
+    TestHttpClient client
 
     def "script module provides executor and renderer"() {
         when:
-        app.with {
+        app = GroovyEmbeddedApp.build {
             bindings {
                 add new ScriptExecutionModule()
             }
@@ -32,8 +35,11 @@ class ScriptExecutionModuleSpec extends Specification {
             }
         }
 
+        and:
+        client = TestHttpClients.testHttpClient(app)
+
         then:
-        jsonResponse().get("outputText").asText() == "foo\n"
+        jsonResponse().get("outputText").asText() == "foo$lineSeparator"
     }
 
     JsonNode jsonResponse() {

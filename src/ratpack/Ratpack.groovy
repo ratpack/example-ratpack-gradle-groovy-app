@@ -11,7 +11,7 @@ ratpack {
 
     bindings {
         add new ScriptExecutionModule()
-        config(TemplatingModule).staticallyCompile = true
+        config(TemplatingModule) { it.staticallyCompile = true }
     }
 
     handlers {
