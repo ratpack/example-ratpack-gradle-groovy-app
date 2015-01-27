@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import ratpack.groovy.test.embed.GroovyEmbeddedApp
 import ratpack.test.embed.EmbeddedApp
 import ratpack.test.http.TestHttpClient
-import ratpack.test.http.TestHttpClients
 import spock.lang.AutoCleanup
 import spock.lang.Specification
 
@@ -36,7 +35,7 @@ class ScriptExecutionModuleSpec extends Specification {
         }
 
         and:
-        client = TestHttpClients.testHttpClient(app)
+        client = TestHttpClient.testHttpClient(app)
 
         then:
         jsonResponse().get("outputText").asText() == "foo$lineSeparator"

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import ratpack.groovy.test.LocalScriptApplicationUnderTest
 import ratpack.http.client.ReceivedResponse
 import ratpack.test.http.TestHttpClient
-import ratpack.test.http.TestHttpClients
 import spock.lang.Specification
 
 import static ratpack.http.MediaType.APPLICATION_FORM
@@ -13,7 +12,7 @@ import static ratpack.http.MediaType.APPLICATION_FORM
 class ScriptExecutionSpec extends Specification {
 
     def aut = new LocalScriptApplicationUnderTest()
-    @Delegate TestHttpClient client = TestHttpClients.testHttpClient(aut)
+    @Delegate TestHttpClient client = TestHttpClient.testHttpClient(aut)
 
     def setup() {
         resetRequest()
