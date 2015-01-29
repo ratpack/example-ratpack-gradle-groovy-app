@@ -2,16 +2,17 @@ package ratpack.example.groovywebconsole
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import ratpack.groovy.test.LocalScriptApplicationUnderTest
+import ratpack.groovy.test.GroovyRatpackMainApplicationUnderTest
 import ratpack.http.client.ReceivedResponse
 import ratpack.test.http.TestHttpClient
 import spock.lang.Specification
+import spock.lang.AutoCleanup
 
 import static ratpack.http.MediaType.APPLICATION_FORM
 
 class ScriptExecutionSpec extends Specification {
 
-    def aut = new LocalScriptApplicationUnderTest()
+    @AutoCleanup def aut = new GroovyRatpackMainApplicationUnderTest()
     @Delegate TestHttpClient client = TestHttpClient.testHttpClient(aut)
 
     def setup() {
