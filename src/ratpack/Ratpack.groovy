@@ -2,7 +2,7 @@ import ratpack.example.groovywebconsole.ReloadingThing
 import ratpack.example.groovywebconsole.ScriptExecutionModule
 import ratpack.example.groovywebconsole.ScriptExecutor
 import ratpack.form.Form
-import ratpack.groovy.templating.TemplatingModule
+import ratpack.groovy.template.TextTemplateModule
 
 import static ratpack.groovy.Groovy.groovyTemplate
 import static ratpack.groovy.Groovy.ratpack
@@ -11,7 +11,7 @@ ratpack {
 
     bindings {
         add new ScriptExecutionModule()
-        add(TemplatingModule) { TemplatingModule.Config config -> config.staticallyCompile = true }
+        add(TextTemplateModule) { TextTemplateModule.Config config -> config.staticallyCompile = true }
     }
 
     handlers {
