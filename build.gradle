@@ -32,8 +32,6 @@ idea {
 apply plugin: "eclipse"
 
 repositories {
-  jcenter()
-  maven { url 'http://clinker.netty.io/nexus/content/repositories/snapshots' }
   maven { url "http://oss.jfrog.org/artifactory/repo" }
   jcenter()
   maven { url "http://repo.springsource.org/repo" } // for springloaded
