@@ -8,10 +8,13 @@ buildscript {
     }
 }
 
+// The “ratpack” plugin applies the “application” plugin, making it easy to create a standalone application.
+// See: http://gradle.org/docs/current/userguide/application_plugin.html
 apply plugin: "io.ratpack.ratpack-groovy"
-apply plugin: "idea"
-apply plugin: "eclipse"
 
+// The “ratpack” plugin is IDEA aware.
+// It will create a run configuration in IDEA to launch your app in your IDE, with hot reloading.
+apply plugin: "idea"
 idea {
     project {
         jdkName "1.8"
@@ -26,10 +29,14 @@ idea {
     }
 }
 
+apply plugin: "eclipse"
+
 repositories {
   jcenter()
   maven { url 'http://clinker.netty.io/nexus/content/repositories/snapshots' }
   maven { url "http://oss.jfrog.org/artifactory/repo" }
+  jcenter()
+  maven { url "http://repo.springsource.org/repo" } // for springloaded
 }
 
 configurations.all {
