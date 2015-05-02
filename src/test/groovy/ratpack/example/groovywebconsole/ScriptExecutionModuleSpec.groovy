@@ -25,7 +25,7 @@ class ScriptExecutionModuleSpec extends Specification {
         when:
         app = GroovyEmbeddedApp.build {
             bindings {
-                add new ScriptExecutionModule()
+                module ScriptExecutionModule
             }
             handlers {
                 get { ScriptExecutor executor ->
