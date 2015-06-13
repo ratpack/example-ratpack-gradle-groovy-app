@@ -9,28 +9,28 @@ import static ratpack.groovy.Groovy.ratpack
 
 ratpack {
 
-    bindings {
-        module ScriptExecutionModule
-        module TextTemplateModule, { TextTemplateModule.Config config -> config.staticallyCompile = true }
-    }
+	bindings {
+		module ScriptExecutionModule
+		module TextTemplateModule, { TextTemplateModule.Config config -> config.staticallyCompile = true }
+	}
 
-    handlers {
-        get {
-            render groovyTemplate("skin.html", title: "Groovy Web Console")
-        }
+	handlers {
+		get {
+			render groovyTemplate("skin.html", title: "Groovy Web Console")
+		}
 
-        post("execute") { ScriptExecutor scriptExecutor ->
-            Form form = parse(Form)
-            String script = form.script
-            render scriptExecutor.execute(script)
-        }
+		post("execute") { ScriptExecutor scriptExecutor ->
+			Form form = parse(Form)
+			String script = form.script
+			render scriptExecutor.execute(script)
+		}
 
-        get("reloadexample") {
-            render new ReloadingThing().toString()
-        }
+		get("reloadexample") {
+			render new ReloadingThing().toString()
+		}
 
-        assets "public"
-    }
+		fileSystem "public", { f -> f.files() }
+	}
 
 }
 
