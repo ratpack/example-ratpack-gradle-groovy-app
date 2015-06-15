@@ -4,7 +4,7 @@ It is also using the Ratpack Gradle plugin as the development environment.
 
 ## Getting Started
 
-*To run this app, you need Java 7* (to be fixed)
+*To run this app, you need Java 8
 
 Check this project out, cd into the directory and run:
 

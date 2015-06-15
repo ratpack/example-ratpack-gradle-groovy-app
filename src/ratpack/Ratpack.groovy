@@ -10,8 +10,8 @@ import static ratpack.groovy.Groovy.ratpack
 ratpack {
 
     bindings {
-        add new ScriptExecutionModule()
-        add(TextTemplateModule) { TextTemplateModule.Config config -> config.staticallyCompile = true }
+        module ScriptExecutionModule
+        module(TextTemplateModule) { TextTemplateModule.Config config -> config.staticallyCompile = true }
     }
 
     handlers {
@@ -31,7 +31,4 @@ ratpack {
 
         assets "public"
     }
-
 }
-
-
