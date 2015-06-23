@@ -23,7 +23,7 @@ class ScriptExecutionModuleSpec extends Specification {
 
     def "script module provides executor and renderer"() {
         when:
-        app = GroovyEmbeddedApp.build {
+        app = GroovyEmbeddedApp.of {
             bindings {
                 module ScriptExecutionModule
             }
