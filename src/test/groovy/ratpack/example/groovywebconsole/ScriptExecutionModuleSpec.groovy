@@ -3,6 +3,7 @@ package ratpack.example.groovywebconsole
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import ratpack.groovy.test.embed.GroovyEmbeddedApp
+import ratpack.guice.Guice
 import ratpack.test.embed.EmbeddedApp
 import ratpack.test.http.TestHttpClient
 import spock.lang.AutoCleanup
@@ -23,9 +24,9 @@ class ScriptExecutionModuleSpec extends Specification {
 
     def "script module provides executor and renderer"() {
         when:
-        app = GroovyEmbeddedApp.build {
-            bindings {
-                module ScriptExecutionModule
+        app = GroovyEmbeddedApp.of {
+            registry Guice.registry {
+                it.module ScriptExecutionModule
             }
             handlers {
                 get { ScriptExecutor executor ->
