@@ -36,7 +36,7 @@ class ScriptExecutionModuleSpec extends Specification {
         }
 
         and:
-        client = TestHttpClient.testHttpClient(app)
+        client = testHttpClient(app)
 
         then:
         jsonResponse().get("outputText").asText() == "foo$lineSeparator"
