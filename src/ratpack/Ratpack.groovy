@@ -20,9 +20,10 @@ ratpack {
 		}
 
 		post("execute") { ScriptExecutor scriptExecutor ->
-			Form form = parse(Form)
-			String script = form.script
-			render scriptExecutor.execute(script)
+			parse(Form).then { Form form ->
+				String script = form.script
+				render scriptExecutor.execute(script)
+			}
 		}
 
 		get("reloadexample") {
